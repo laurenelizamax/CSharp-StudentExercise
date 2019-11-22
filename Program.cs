@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StudentExercises
 {
@@ -34,15 +35,17 @@ namespace StudentExercises
                 };
 
                 // List of Cohorts
-                List<Cohort> cohorts = new List<Cohort>();
 
                 Cohort cohort33 = new Cohort("Cohort 33");
                 Cohort cohort34 = new Cohort("Cohort 34");
                 Cohort cohort35 = new Cohort("Cohort 35");
 
-                cohorts.Add(cohort33);
-                cohorts.Add(cohort34);
-                cohorts.Add(cohort35);
+                List<Cohort> cohorts = new List<Cohort>()
+                {
+                        cohort33,
+                        cohort34,
+                        cohort35
+                };
 
                 // List of Students
 
@@ -66,12 +69,18 @@ namespace StudentExercises
                 student4.StudentLastName = "Maxwell";
                 student4.StudentSlack = "laureneliza";
 
+                Student student5 = new Student();
+                student5.StudentFirstName = "Phil";
+                student5.StudentLastName = "Griswold";
+                student5.StudentSlack = "phil";
+
                 List<Student> students = new List<Student>()
                 {
                     student1,
                     student2,
                     student3,
-                    student4
+                    student4,
+                    student5
                 };
 
                 // Add students to Cohorts
@@ -79,9 +88,9 @@ namespace StudentExercises
                 cohort34.Students.Add(student2);
                 cohort35.Students.Add(student3);
                 cohort35.Students.Add(student4);
+                cohort35.Students.Add(student5);
 
                 // List of Instructors
-                List<Instructor> teachers = new List<Instructor>();
 
                 Instructor teacher1 = new Instructor();
                 teacher1.TeachFirstName = "Madi";
@@ -101,9 +110,14 @@ namespace StudentExercises
                 teacher3.TeachSlack = "adamsheaf";
                 teacher3.Speciality = "Makes sure everyone is understanding";
 
-                teachers.Add(teacher1);
-                teachers.Add(teacher2);
-                teachers.Add(teacher3);
+
+                List<Instructor> teachers = new List<Instructor>()
+                                {
+                                    teacher1,
+                                    teacher2,
+                                    teacher3
+                                };
+
 
                 // Assigning Instructors to a cohort
                 cohort33.Instructors.Add(teacher1);
@@ -115,6 +129,9 @@ namespace StudentExercises
                 teacher2.assignStudentExercise(student3, thirdEx);
                 teacher3.assignStudentExercise(student2, secondEx);
                 teacher3.assignStudentExercise(student1, firstEx);
+                teacher3.assignStudentExercise(student4, thirdEx);
+                teacher3.assignStudentExercise(student4, firstEx);
+
 
                 // Display which students are working on which exercises
                 foreach (Student student in students)
@@ -125,7 +142,76 @@ namespace StudentExercises
                     }
 
                 }
+                Console.WriteLine("=============================");
 
+                // Display Exercises done in Javascript
+                var jsExercises = exercises.Where(ex => ex.ExerciseLanguage == "Javascript").ToList();
+                Console.WriteLine("List of Exercises in Javascript");
+                foreach (Exercise exercise in jsExercises)
+                {
+                    Console.WriteLine($"{exercise.ExerciseName}");
+                }
+
+                // Display Students in Cohort 35
+                var studentsIn35 = cohorts.Where(co => co.CohortName == "Cohort 35").SelectMany(c => c.Students)
+                .Distinct();
+                Console.WriteLine("Students in Cohort 35");
+                foreach (var student in studentsIn35)
+                {
+                    Console.WriteLine($"{student.StudentFirstName}");
+                }
+
+                // Display Teachers in Cohort 33
+                var teachersIn33 = cohorts.Where(co => co.CohortName == "Cohort 33").SelectMany(c => c.Instructors)
+                .Distinct();
+                Console.WriteLine("Teachers in Cohort 35");
+                foreach (var teacher in teachersIn33)
+                {
+                    Console.WriteLine($"{teacher.TeachFirstName}");
+                }
+
+                Console.WriteLine("====================");
+
+                // Sort students by their last name
+                var studentOrder = students.OrderBy(name => name.StudentLastName).ToList();
+
+                foreach (var student in studentOrder)
+                {
+                    Console.WriteLine($"{student.StudentLastName}");
+                }
+                Console.WriteLine("====================");
+
+                // Display any students that are NOT assigned an exercise 
+                var studentsWOEx = students.Where(ex => ex.Exercises.Count == 0).ToList();
+
+                foreach (var stud in studentsWOEx)
+                {
+                    Console.WriteLine($"{stud.StudentFirstName}");
+                }
+                Console.WriteLine("====================");
+
+                // Display the Student working on the most exercises
+                var studentWMost = students.Select(s => new
+                {
+                    firstName = s.StudentFirstName,
+                    numOfExercises = s.Exercises.Count()
+                }).OrderByDescending(s => s.numOfExercises).FirstOrDefault();
+
+                Console.WriteLine($"{studentWMost.firstName} has {studentWMost.numOfExercises}");
+
+                Console.WriteLine("====================");
+
+                // Display the number of students in each cohort
+                var numStudentsInCohorts = cohorts.Select(c => new
+                {
+                    cohortName = c.CohortName,
+                    numOfStudents = c.Students.Count()
+                }).ToList();
+
+                foreach (var student in numStudentsInCohorts)
+                {
+                    Console.WriteLine($"{student.cohortName} has {student.numOfStudents} students.");
+                }
             }
         }
     }
