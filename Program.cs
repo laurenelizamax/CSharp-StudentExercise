@@ -143,8 +143,9 @@ namespace StudentExercises
 
                 }
                 Console.WriteLine("=============================");
+                //Student Exercises Part 2
 
-                // Display Exercises done in Javascript
+                // 1.) Display Exercises done in Javascript
                 var jsExercises = exercises.Where(ex => ex.ExerciseLanguage == "Javascript").ToList();
                 Console.WriteLine("List of Exercises in Javascript");
                 foreach (Exercise exercise in jsExercises)
@@ -152,7 +153,7 @@ namespace StudentExercises
                     Console.WriteLine($"{exercise.ExerciseName}");
                 }
 
-                // Display Students in Cohort 35
+                // 2.)Display Students in Cohort 35
                 var studentsIn35 = cohorts.Where(co => co.CohortName == "Cohort 35").SelectMany(c => c.Students)
                 .Distinct();
                 Console.WriteLine("Students in Cohort 35");
@@ -161,7 +162,7 @@ namespace StudentExercises
                     Console.WriteLine($"{student.StudentFirstName}");
                 }
 
-                // Display Teachers in Cohort 33
+                // 3.)Display Teachers in Cohort 33
                 var teachersIn33 = cohorts.Where(co => co.CohortName == "Cohort 33").SelectMany(c => c.Instructors)
                 .Distinct();
                 Console.WriteLine("Teachers in Cohort 35");
@@ -172,7 +173,7 @@ namespace StudentExercises
 
                 Console.WriteLine("====================");
 
-                // Sort students by their last name
+                //4.) Sort students by their last name
                 var studentOrder = students.OrderBy(name => name.StudentLastName).ToList();
 
                 foreach (var student in studentOrder)
@@ -181,7 +182,7 @@ namespace StudentExercises
                 }
                 Console.WriteLine("====================");
 
-                // Display any students that are NOT assigned an exercise 
+                // 5.)Display any students that are NOT assigned an exercise 
                 var studentsWOEx = students.Where(ex => ex.Exercises.Count == 0).ToList();
 
                 foreach (var stud in studentsWOEx)
@@ -190,7 +191,7 @@ namespace StudentExercises
                 }
                 Console.WriteLine("====================");
 
-                // Display the Student working on the most exercises
+                // 6.)Display the Student working on the most exercises
                 var studentWMost = students.Select(s => new
                 {
                     firstName = s.StudentFirstName,
@@ -201,7 +202,7 @@ namespace StudentExercises
 
                 Console.WriteLine("====================");
 
-                // Display the number of students in each cohort
+                // 7.)Display the number of students in each cohort
                 var numStudentsInCohorts = cohorts.Select(c => new
                 {
                     cohortName = c.CohortName,
