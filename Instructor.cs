@@ -3,13 +3,15 @@ using System.Collections.Generic;
 
 namespace StudentExercises
 {
-    class Instructor
+    public class Instructor : NSSPerson
     {
-        public string TeachFirstName { get; set; }
-        public string TeachLastName { get; set; }
-        public string TeachSlack { get; set; }
+        public string Slack { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
         public Cohort Cohort { get; set; }
         public string Speciality { get; set; }
+
 
         public void assignStudentExercise(Student student, Exercise exercise)
         {

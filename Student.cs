@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace StudentExercises
 {
-    class Student
+    public class Student : NSSPerson
     {
-        public string StudentFirstName { get; set; }
-        public string StudentLastName { get; set; }
-        public string StudentSlack { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Slack { get; set; }
         public Cohort Cohort { get; set; }
         public List<Exercise> Exercises { get; set; }
 

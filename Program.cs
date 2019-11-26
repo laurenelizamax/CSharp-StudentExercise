@@ -50,29 +50,29 @@ namespace StudentExercises
                 // List of Students
 
                 Student student1 = new Student();
-                student1.StudentFirstName = " Dylan";
-                student1.StudentLastName = "Pickle";
-                student1.StudentSlack = "dylp";
+                student1.FirstName = " Dylan";
+                student1.LastName = "Pickle";
+                student1.Slack = "dylp";
 
                 Student student2 = new Student();
-                student2.StudentFirstName = "Shirish";
-                student2.StudentLastName = "Shrestha";
-                student2.StudentSlack = "shirishshrestha";
+                student2.FirstName = "Shirish";
+                student2.LastName = "Shrestha";
+                student2.Slack = "shirishshrestha";
 
                 Student student3 = new Student();
-                student3.StudentFirstName = "Heidi";
-                student3.StudentLastName = "Smith";
-                student3.StudentSlack = "heidismith";
+                student3.FirstName = "Heidi";
+                student3.LastName = "Smith";
+                student3.Slack = "heidismith";
 
                 Student student4 = new Student();
-                student4.StudentFirstName = "Lauren";
-                student4.StudentLastName = "Maxwell";
-                student4.StudentSlack = "laureneliza";
+                student4.FirstName = "Lauren";
+                student4.LastName = "Maxwell";
+                student4.Slack = "laureneliza";
 
                 Student student5 = new Student();
-                student5.StudentFirstName = "Phil";
-                student5.StudentLastName = "Griswold";
-                student5.StudentSlack = "phil";
+                student5.FirstName = "Phil";
+                student5.LastName = "Griswold";
+                student5.Slack = "phil";
 
                 List<Student> students = new List<Student>()
                 {
@@ -93,21 +93,21 @@ namespace StudentExercises
                 // List of Instructors
 
                 Instructor teacher1 = new Instructor();
-                teacher1.TeachFirstName = "Madi";
-                teacher1.TeachLastName = "Peper";
-                teacher1.TeachSlack = "madipeper";
+                teacher1.FirstName = "Madi";
+                teacher1.LastName = "Peper";
+                teacher1.Slack = "madipeper";
                 teacher1.Speciality = "Knows how to explain things";
 
                 Instructor teacher2 = new Instructor();
-                teacher2.TeachFirstName = "Mo";
-                teacher2.TeachLastName = "Silvera";
-                teacher2.TeachSlack = "mo";
+                teacher2.FirstName = "Mo";
+                teacher2.LastName = "Silvera";
+                teacher2.Slack = "mo";
                 teacher2.Speciality = "joking around";
 
                 Instructor teacher3 = new Instructor();
-                teacher3.TeachFirstName = "Adam";
-                teacher3.TeachLastName = "Sheaffer";
-                teacher3.TeachSlack = "adamsheaf";
+                teacher3.FirstName = "Adam";
+                teacher3.LastName = "Sheaffer";
+                teacher3.Slack = "adamsheaf";
                 teacher3.Speciality = "Makes sure everyone is understanding";
 
 
@@ -138,7 +138,7 @@ namespace StudentExercises
                 {
                     foreach (Exercise exercise in student.Exercises)
                     {
-                        Console.WriteLine($"{student.StudentFirstName} {student.StudentLastName}  is working on {exercise.ExerciseName}");
+                        Console.WriteLine($"{student.FirstName} {student.LastName}  is working on {exercise.ExerciseName}");
                     }
 
                 }
@@ -159,7 +159,7 @@ namespace StudentExercises
                 Console.WriteLine("Students in Cohort 35");
                 foreach (var student in studentsIn35)
                 {
-                    Console.WriteLine($"{student.StudentFirstName}");
+                    Console.WriteLine($"{student.FirstName}");
                 }
 
                 // 3.)Display Teachers in Cohort 33
@@ -168,17 +168,17 @@ namespace StudentExercises
                 Console.WriteLine("Teachers in Cohort 35");
                 foreach (var teacher in teachersIn33)
                 {
-                    Console.WriteLine($"{teacher.TeachFirstName}");
+                    Console.WriteLine($"{teacher.FirstName}");
                 }
 
                 Console.WriteLine("====================");
 
                 //4.) Sort students by their last name
-                var studentOrder = students.OrderBy(name => name.StudentLastName).ToList();
+                var studentOrder = students.OrderBy(name => name.LastName).ToList();
 
                 foreach (var student in studentOrder)
                 {
-                    Console.WriteLine($"{student.StudentLastName}");
+                    Console.WriteLine($"{student.LastName}");
                 }
                 Console.WriteLine("====================");
 
@@ -187,14 +187,14 @@ namespace StudentExercises
 
                 foreach (var stud in studentsWOEx)
                 {
-                    Console.WriteLine($"{stud.StudentFirstName}");
+                    Console.WriteLine($"{stud.FirstName}");
                 }
                 Console.WriteLine("====================");
 
                 // 6.)Display the Student working on the most exercises
                 var studentWMost = students.Select(s => new
                 {
-                    firstName = s.StudentFirstName,
+                    firstName = s.FirstName,
                     numOfExercises = s.Exercises.Count()
                 }).OrderByDescending(s => s.numOfExercises).FirstOrDefault();
 

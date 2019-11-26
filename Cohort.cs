@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StudentExercises
 {
-    class Cohort
+    public class Cohort
     {
         public string CohortName { get; set; }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StudentExercises
 {
-    class Exercise
+    public class Exercise
     {
         public string ExerciseName { get; set; }
 
